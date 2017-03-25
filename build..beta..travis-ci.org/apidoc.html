@@ -48,9 +48,9 @@
 </style>
 <h1>api-documentation for
     <a
-        
+
         href="https://github.com/kelektiv/node.bcrypt.js#readme"
-        
+
     >bcrypt (v1.0.2)</a>
 </h1>
 <h4>A bcrypt library for NodeJS.</h4>
@@ -58,108 +58,108 @@
     href="#apidoc.tableOfContents"
     id="apidoc.tableOfContents"
 ><h1>table of contents</h1></a><ol>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt">module bcrypt</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.compare">
             function <span class="apidocSignatureSpan">bcrypt.</span>compare
             <span class="apidocSignatureSpan">(data, hash, cb)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.compareSync">
             function <span class="apidocSignatureSpan">bcrypt.</span>compareSync
             <span class="apidocSignatureSpan">(data, hash)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.genSalt">
             function <span class="apidocSignatureSpan">bcrypt.</span>genSalt
             <span class="apidocSignatureSpan">(rounds, ignore, cb)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.genSaltSync">
             function <span class="apidocSignatureSpan">bcrypt.</span>genSaltSync
             <span class="apidocSignatureSpan">(rounds)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.getRounds">
             function <span class="apidocSignatureSpan">bcrypt.</span>getRounds
             <span class="apidocSignatureSpan">(hash)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.hash">
             function <span class="apidocSignatureSpan">bcrypt.</span>hash
             <span class="apidocSignatureSpan">(data, salt, cb)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.hashSync">
             function <span class="apidocSignatureSpan">bcrypt.</span>hashSync
             <span class="apidocSignatureSpan">(data, salt)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bcrypt.</span>promises</span>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
     <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt.promises">module bcrypt.promises</a><ol>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.promise">
             function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
             <span class="apidocSignatureSpan">(fn, context, args)</span>
             </a>
-            
+
         </li>
-        
+
         <li>
-            
+
             <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.reject">
             function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
             <span class="apidocSignatureSpan">(err)</span>
             </a>
-            
+
         </li>
-        
+
     </ol></li>
-    
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.bcrypt" id="apidoc.module.bcrypt">module bcrypt</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.compare" id="apidoc.element.bcrypt.compare">
         function <span class="apidocSignatureSpan">bcrypt.</span>compare
@@ -222,9 +222,9 @@ bcrypt.compare(someOtherPlaintextPassword, hash, function(err, res) {
 ### with promises
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.compareSync" id="apidoc.element.bcrypt.compareSync">
         function <span class="apidocSignatureSpan">bcrypt.</span>compareSync
@@ -256,16 +256,16 @@ bcrypt.compareSync(someOtherPlaintextPassword, hash); // false
 ```
 
 ### Why is async mode recommended over sync mode?
-If you are using bcrypt on a simple script, using the sync mode is perfectly fine. However, if you are using bcrypt on a server,\
- the async mode is recommended. This is because the hashing done by bcrypt is CPU intensive, so the sync version will block the \
-event loop and prevent your application from servicing any other inbound requests or events.
+If you are using bcrypt on a simple script, using the sync mode is perfectly fine. However, if you are using bcrypt on a server,
+the async mode is recommended. This is because the hashing done by bcrypt is CPU intensive, so the sync version will block the event
+ loop and prevent your application from servicing any other inbound requests or events.
 
 ## API
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.genSalt" id="apidoc.element.bcrypt.genSalt">
         function <span class="apidocSignatureSpan">bcrypt.</span>genSalt
@@ -326,9 +326,9 @@ bcrypt.<span class="apidocCodeKeywordSpan">genSalt</span>(saltRounds, function(e
 Technique 2 (auto-gen a salt and hash):
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.genSaltSync" id="apidoc.element.bcrypt.genSaltSync">
         function <span class="apidocSignatureSpan">bcrypt.</span>genSaltSync
@@ -364,9 +364,9 @@ Technique 2 (auto-gen a salt and hash):
 ```javascript
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.getRounds" id="apidoc.element.bcrypt.getRounds">
         function <span class="apidocSignatureSpan">bcrypt.</span>getRounds
@@ -387,9 +387,9 @@ Technique 2 (auto-gen a salt and hash):
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.hash" id="apidoc.element.bcrypt.hash">
         function <span class="apidocSignatureSpan">bcrypt.</span>hash
@@ -458,9 +458,9 @@ bcrypt.genSalt(saltRounds, function(err, salt) {
 Technique 2 (auto-gen a salt and hash):
 ...</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.hashSync" id="apidoc.element.bcrypt.hashSync">
         function <span class="apidocSignatureSpan">bcrypt.</span>hashSync
@@ -501,16 +501,16 @@ Technique 2 (auto-gen a salt and hash):
 var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
 ...</pre></li>
     </ul>
-    
-    
-    
-    
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.bcrypt.promises" id="apidoc.module.bcrypt.promises">module bcrypt.promises</a></h1>
-    
-    
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.promises.promise" id="apidoc.element.bcrypt.promises.promise">
         function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
@@ -547,9 +547,9 @@ var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
-    
-    
-    
+
+
+
     <h2>
         <a href="#apidoc.element.bcrypt.promises.reject" id="apidoc.element.bcrypt.promises.reject">
         function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
@@ -585,8 +585,8 @@ return new Promise(function(resolve, reject) {
         } else {
 ...</pre></li>
     </ul>
-    
-    
+
+
 </div>
 
 <div class="apidocFooterDiv">
