@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/kelektiv/node.bcrypt.js#readme"
-
-    >bcrypt (v1.0.2)</a>
+    <a href="https://github.com/kelektiv/node.bcrypt.js#readme">bcrypt (v1.0.2)</a>
 </h1>
 <h4>A bcrypt library for NodeJS.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt">module bcrypt</a><ol>
 
@@ -168,22 +161,22 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function compare(data, hash, cb) {
-    if (typeof data === &#x27;function&#x27;) {
+    if (typeof data === 'function') {
         return process.nextTick(function() {
-            data(new Error(&#x27;data and hash arguments required&#x27;));
+            data(new Error('data and hash arguments required'));
         });
     }
 
-    if (typeof hash === &#x27;function&#x27;) {
+    if (typeof hash === 'function') {
         return process.nextTick(function() {
-            hash(new Error(&#x27;data and hash arguments required&#x27;));
+            hash(new Error('data and hash arguments required'));
         });
     }
 
     // cb exists but is not a function
     // return a rejecting promise
-    if (cb &#x26;&#x26; typeof cb !== &#x27;function&#x27;) {
-        return promises.reject(new Error(&#x27;cb must be a function or null to return a Promise&#x27;));
+    if (cb &amp;&amp; typeof cb !== 'function') {
+        return promises.reject(new Error('cb must be a function or null to return a Promise'));
     }
 
     if (!cb) {
@@ -192,13 +185,13 @@
 
     if (data == null || hash == null) {
         return process.nextTick(function() {
-            cb(new Error(&#x27;data and hash arguments required&#x27;));
+            cb(new Error('data and hash arguments required'));
         });
     }
 
-    if (typeof data !== &#x27;string&#x27; || typeof hash !== &#x27;string&#x27;) {
+    if (typeof data !== 'string' || typeof hash !== 'string') {
         return process.nextTick(function() {
-            cb(new Error(&#x27;data and hash must be strings&#x27;));
+            cb(new Error('data and hash must be strings'));
         });
     }
 
@@ -234,11 +227,11 @@ bcrypt.compare(someOtherPlaintextPassword, hash, function(err, res) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function compareSync(data, hash) {
     if (data == null || hash == null) {
-        throw new Error(&#x27;data and hash arguments required&#x27;);
+        throw new Error('data and hash arguments required');
     }
 
-    if (typeof data !== &#x27;string&#x27; || typeof hash !== &#x27;string&#x27;) {
-        throw new Error(&#x27;data and hash must be strings&#x27;);
+    if (typeof data !== 'string' || typeof hash !== 'string') {
+        throw new Error('data and hash must be strings');
     }
 
     return bindings.compare_sync(data, hash);
@@ -275,12 +268,12 @@ the async mode is recommended. This is because the hashing done by bcrypt is CPU
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function genSalt(rounds, ignore, cb) {
     // if callback is first argument, then use defaults for others
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
         // have to set callback first otherwise arguments are overriden
         cb = arguments[0];
         rounds = 10;
     // callback is second argument
-    } else if (typeof arguments[1] === &#x27;function&#x27;) {
+    } else if (typeof arguments[1] === 'function') {
         // have to set callback first otherwise arguments are overriden
         cb = arguments[1];
     }
@@ -292,10 +285,10 @@ the async mode is recommended. This is because the hashing done by bcrypt is CPU
     // default 10 rounds
     if (!rounds) {
         rounds = 10;
-    } else if (typeof rounds !== &#x27;number&#x27;) {
+    } else if (typeof rounds !== 'number') {
         // callback error asynchronously
         return process.nextTick(function() {
-            cb(new Error(&#x27;rounds must be a number&#x27;));
+            cb(new Error('rounds must be a number'));
         });
     }
 
@@ -340,8 +333,8 @@ Technique 2 (auto-gen a salt and hash):
     // default 10 rounds
     if (!rounds) {
         rounds = 10;
-    } else if (typeof rounds !== &#x27;number&#x27;) {
-        throw new Error(&#x27;rounds must be a number&#x27;);
+    } else if (typeof rounds !== 'number') {
+        throw new Error('rounds must be a number');
     }
 
     return bindings.gen_salt_sync(rounds, crypto.randomBytes(16));
@@ -376,11 +369,11 @@ Technique 2 (auto-gen a salt and hash):
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getRounds(hash) {
     if (hash == null) {
-        throw new Error(&#x27;hash argument required&#x27;);
+        throw new Error('hash argument required');
     }
 
-    if (typeof hash !== &#x27;string&#x27;) {
-        throw new Error(&#x27;hash must be a string&#x27;);
+    if (typeof hash !== 'string') {
+        throw new Error('hash must be a string');
     }
 
     return bindings.get_rounds(hash);
@@ -398,22 +391,22 @@ Technique 2 (auto-gen a salt and hash):
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function hash(data, salt, cb) {
-    if (typeof data === &#x27;function&#x27;) {
+    if (typeof data === 'function') {
         return process.nextTick(function() {
-            data(new Error(&#x27;data must be a string and salt must either be a salt string or a number of rounds&#x27;));
+            data(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
         });
     }
 
-    if (typeof salt === &#x27;function&#x27;) {
+    if (typeof salt === 'function') {
         return process.nextTick(function() {
-            salt(new Error(&#x27;data must be a string and salt must either be a salt string or a number of rounds&#x27;));
+            salt(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
         });
     }
 
     // cb exists but is not a function
     // return a rejecting promise
-    if (cb &#x26;&#x26; typeof cb !== &#x27;function&#x27;) {
-        return promises.reject(new Error(&#x27;cb must be a function or null to return a Promise&#x27;));
+    if (cb &amp;&amp; typeof cb !== 'function') {
+        return promises.reject(new Error('cb must be a function or null to return a Promise'));
     }
 
     if (!cb) {
@@ -422,18 +415,18 @@ Technique 2 (auto-gen a salt and hash):
 
     if (data == null || salt == null) {
         return process.nextTick(function() {
-            cb(new Error(&#x27;data and salt arguments required&#x27;));
+            cb(new Error('data and salt arguments required'));
         });
     }
 
-    if (typeof data !== &#x27;string&#x27; || (typeof salt !== &#x27;string&#x27; &#x26;&#x26; typeof salt !== &#x27;number&#x27;)) {
+    if (typeof data !== 'string' || (typeof salt !== 'string' &amp;&amp; typeof salt !== 'number')) {
         return process.nextTick(function() {
-            cb(new Error(&#x27;data must be a string and salt must either be a salt string or a number of rounds&#x27;));
+            cb(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
         });
     }
 
 
-    if (typeof salt === &#x27;number&#x27;) {
+    if (typeof salt === 'number') {
         return module.exports.genSalt(salt, function(err, salt) {
             return bindings.encrypt(data, salt, cb);
         });
@@ -470,14 +463,14 @@ Technique 2 (auto-gen a salt and hash):
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function hashSync(data, salt) {
     if (data == null || salt == null) {
-        throw new Error(&#x27;data and salt arguments required&#x27;);
+        throw new Error('data and salt arguments required');
     }
 
-    if (typeof data !== &#x27;string&#x27; || (typeof salt !== &#x27;string&#x27; &#x26;&#x26; typeof salt !== &#x27;number&#x27;)) {
-        throw new Error(&#x27;data must be a string and salt must either be a salt string or a number of rounds&#x27;);
+    if (typeof data !== 'string' || (typeof salt !== 'string' &amp;&amp; typeof salt !== 'number')) {
+        throw new Error('data must be a string and salt must either be a salt string or a number of rounds');
     }
 
-    if (typeof salt === &#x27;number&#x27;) {
+    if (typeof salt === 'number') {
         salt = module.exports.genSaltSync(salt);
     }
 
@@ -520,8 +513,8 @@ var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">promise = function (fn, context, args) {
 
-    //can&#x27;t do anything without Promise so fail silently
-    if (typeof Promise === &#x27;undefined&#x27;) {
+    //can't do anything without Promise so fail silently
+    if (typeof Promise === 'undefined') {
         return;
     }
 
@@ -529,8 +522,8 @@ var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
         args = Array.prototype.slice.call(args);
     }
 
-    if (typeof fn !== &#x27;function&#x27;) {
-        return Promise.reject(new Error(&#x27;fn must be a function&#x27;));
+    if (typeof fn !== 'function') {
+        return Promise.reject(new Error('fn must be a function'));
     }
 
     return new Promise(function(resolve, reject) {
@@ -561,7 +554,7 @@ var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
 
     // silently swallow errors if Promise is not defined
     // emulating old behavior
-    if (typeof Promise === &#x27;undefined&#x27;) {
+    if (typeof Promise === 'undefined') {
         return;
     }
 
@@ -574,8 +567,8 @@ if (!Array.isArray(args)) {
     args = Array.prototype.slice.call(args);
 }
 
-if (typeof fn !== &#x27;function&#x27;) {
-    return Promise.<span class="apidocCodeKeywordSpan">reject</span>(new Error(&#x27;fn must be a function&#x27;));
+if (typeof fn !== 'function') {
+    return Promise.<span class="apidocCodeKeywordSpan">reject</span>(new Error('fn must be a function'));
 }
 
 return new Promise(function(resolve, reject) {
@@ -595,3 +588,4 @@ return new Promise(function(resolve, reject) {
     ]
 </div>
 </div>
+</body></html>
