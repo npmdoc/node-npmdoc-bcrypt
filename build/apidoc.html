@@ -124,34 +124,6 @@
 
         </li>
 
-        <li>
-
-            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bcrypt.</span>promises</span>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt.promises">module bcrypt.promises</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.promise">
-            function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
-            <span class="apidocSignatureSpan">(fn, context, args)</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.reject">
-            function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
-            <span class="apidocSignatureSpan">(err)</span>
-            </a>
-
-        </li>
-
     </ol></li>
 
 </ol></div>
@@ -499,90 +471,6 @@ Technique 2 (auto-gen a salt and hash):
 
 ```javascript
 var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-...</pre></li>
-    </ul>
-
-
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.bcrypt.promises" id="apidoc.module.bcrypt.promises">module bcrypt.promises</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.bcrypt.promises.promise" id="apidoc.element.bcrypt.promises.promise">
-        function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
-        <span class="apidocSignatureSpan">(fn, context, args)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">promise = function (fn, context, args) {
-
-    //can&#x27;t do anything without Promise so fail silently
-    if (typeof Promise === &#x27;undefined&#x27;) {
-        return;
-    }
-
-    if (!Array.isArray(args)) {
-        args = Array.prototype.slice.call(args);
-    }
-
-    if (typeof fn !== &#x27;function&#x27;) {
-        return Promise.reject(new Error(&#x27;fn must be a function&#x27;));
-    }
-
-    return new Promise(function(resolve, reject) {
-        args.push(function(err, data) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(data);
-            }
-        });
-
-        fn.apply(context, args);
-    });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.bcrypt.promises.reject" id="apidoc.element.bcrypt.promises.reject">
-        function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
-        <span class="apidocSignatureSpan">(err)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">reject = function (err) {
-
-    // silently swallow errors if Promise is not defined
-    // emulating old behavior
-    if (typeof Promise === &#x27;undefined&#x27;) {
-        return;
-    }
-
-    return Promise.reject(err);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-}
-
-if (!Array.isArray(args)) {
-    args = Array.prototype.slice.call(args);
-}
-
-if (typeof fn !== &#x27;function&#x27;) {
-    return Promise.<span class="apidocCodeKeywordSpan">reject</span>(new Error(&#x27;fn must be a function&#x27;));
-}
-
-return new Promise(function(resolve, reject) {
-    args.push(function(err, data) {
-        if (err) {
-            reject(err);
-        } else {
 ...</pre></li>
     </ul>
 
