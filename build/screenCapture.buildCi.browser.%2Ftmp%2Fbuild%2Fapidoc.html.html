@@ -117,6 +117,107 @@
 
         </li>
 
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>bcrypt</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">bcrypt.</span>promises</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt.bcrypt">module bcrypt.bcrypt</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.compare">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>compare
+            <span class="apidocSignatureSpan">(data, hash, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.compareSync">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>compareSync
+            <span class="apidocSignatureSpan">(data, hash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.genSalt">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>genSalt
+            <span class="apidocSignatureSpan">(rounds, ignore, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.genSaltSync">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>genSaltSync
+            <span class="apidocSignatureSpan">(rounds)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.getRounds">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>getRounds
+            <span class="apidocSignatureSpan">(hash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.hash">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>hash
+            <span class="apidocSignatureSpan">(data, salt, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.bcrypt.hashSync">
+            function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>hashSync
+            <span class="apidocSignatureSpan">(data, salt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.bcrypt.promises">module bcrypt.promises</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.promise">
+            function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
+            <span class="apidocSignatureSpan">(fn, context, args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.bcrypt.promises.reject">
+            function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
@@ -464,6 +565,458 @@ Technique 2 (auto-gen a salt and hash):
 
 ```javascript
 var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bcrypt.bcrypt" id="apidoc.module.bcrypt.bcrypt">module bcrypt.bcrypt</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.compare" id="apidoc.element.bcrypt.bcrypt.compare">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>compare
+        <span class="apidocSignatureSpan">(data, hash, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compare(data, hash, cb) {
+    if (typeof data === 'function') {
+        return process.nextTick(function() {
+            data(new Error('data and hash arguments required'));
+        });
+    }
+
+    if (typeof hash === 'function') {
+        return process.nextTick(function() {
+            hash(new Error('data and hash arguments required'));
+        });
+    }
+
+    // cb exists but is not a function
+    // return a rejecting promise
+    if (cb &amp;&amp; typeof cb !== 'function') {
+        return promises.reject(new Error('cb must be a function or null to return a Promise'));
+    }
+
+    if (!cb) {
+        return promises.promise(compare, this, [data, hash]);
+    }
+
+    if (data == null || hash == null) {
+        return process.nextTick(function() {
+            cb(new Error('data and hash arguments required'));
+        });
+    }
+
+    if (typeof data !== 'string' || typeof hash !== 'string') {
+        return process.nextTick(function() {
+            cb(new Error('data and hash must be strings'));
+        });
+    }
+
+    return bindings.compare(data, hash, cb);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Note that both techniques achieve the same end-result.
+
+#### To check a password:
+
+```javascript
+// Load hash from your password DB.
+bcrypt.<span class="apidocCodeKeywordSpan">compare</span>(myPlaintextPassword, hash, function(err, res) {
+    // res == true
+});
+bcrypt.compare(someOtherPlaintextPassword, hash, function(err, res) {
+    // res == false
+});
+```
+### with promises
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.compareSync" id="apidoc.element.bcrypt.bcrypt.compareSync">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>compareSync
+        <span class="apidocSignatureSpan">(data, hash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compareSync(data, hash) {
+    if (data == null || hash == null) {
+        throw new Error('data and hash arguments required');
+    }
+
+    if (typeof data !== 'string' || typeof hash !== 'string') {
+        throw new Error('data and hash must be strings');
+    }
+
+    return bindings.compare_sync(data, hash);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+As with async, both techniques achieve the same end-result.
+
+#### To check a password:
+
+```javascript
+// Load hash from your password DB.
+bcrypt.<span class="apidocCodeKeywordSpan">compareSync</span>(myPlaintextPassword, hash); // true
+bcrypt.compareSync(someOtherPlaintextPassword, hash); // false
+```
+
+### Why is async mode recommended over sync mode?
+If you are using bcrypt on a simple script, using the sync mode is perfectly fine. However, if you are using bcrypt on a server,
+the async mode is recommended. This is because the hashing done by bcrypt is CPU intensive, so the sync version will block the event
+ loop and prevent your application from servicing any other inbound requests or events.
+
+## API
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.genSalt" id="apidoc.element.bcrypt.bcrypt.genSalt">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>genSalt
+        <span class="apidocSignatureSpan">(rounds, ignore, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function genSalt(rounds, ignore, cb) {
+    // if callback is first argument, then use defaults for others
+    if (typeof arguments[0] === 'function') {
+        // have to set callback first otherwise arguments are overriden
+        cb = arguments[0];
+        rounds = 10;
+    // callback is second argument
+    } else if (typeof arguments[1] === 'function') {
+        // have to set callback first otherwise arguments are overriden
+        cb = arguments[1];
+    }
+
+    if (!cb) {
+        return promises.promise(genSalt, this, [rounds, ignore]);
+    }
+
+    // default 10 rounds
+    if (!rounds) {
+        rounds = 10;
+    } else if (typeof rounds !== 'number') {
+        // callback error asynchronously
+        return process.nextTick(function() {
+            cb(new Error('rounds must be a number'));
+        });
+    }
+
+    crypto.randomBytes(16, function(error, randomBytes) {
+        if (error) {
+            cb(error);
+            return;
+        }
+
+        bindings.gen_salt(rounds, randomBytes, cb);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+#### To hash a password:
+
+Technique 1 (generate a salt and hash on separate function calls):
+
+```javascript
+bcrypt.<span class="apidocCodeKeywordSpan">genSalt</span>(saltRounds, function(err, salt) {
+    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+        // Store hash in your password DB.
+    });
+});
+```
+
+Technique 2 (auto-gen a salt and hash):
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.genSaltSync" id="apidoc.element.bcrypt.bcrypt.genSaltSync">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>genSaltSync
+        <span class="apidocSignatureSpan">(rounds)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function genSaltSync(rounds) {
+    // default 10 rounds
+    if (!rounds) {
+        rounds = 10;
+    } else if (typeof rounds !== 'number') {
+        throw new Error('rounds must be a number');
+    }
+
+    return bindings.gen_salt_sync(rounds, crypto.randomBytes(16));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+#### To hash a password:
+
+Technique 1 (generate a salt and hash on separate function calls):
+
+```javascript
+var salt = bcrypt.<span class="apidocCodeKeywordSpan">genSaltSync</span>(saltRounds);
+var hash = bcrypt.hashSync(myPlaintextPassword, salt);
+// Store hash in your password DB.
+```
+
+Technique 2 (auto-gen a salt and hash):
+
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.getRounds" id="apidoc.element.bcrypt.bcrypt.getRounds">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>getRounds
+        <span class="apidocSignatureSpan">(hash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getRounds(hash) {
+    if (hash == null) {
+        throw new Error('hash argument required');
+    }
+
+    if (typeof hash !== 'string') {
+        throw new Error('hash must be a string');
+    }
+
+    return bindings.get_rounds(hash);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.hash" id="apidoc.element.bcrypt.bcrypt.hash">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>hash
+        <span class="apidocSignatureSpan">(data, salt, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hash(data, salt, cb) {
+    if (typeof data === 'function') {
+        return process.nextTick(function() {
+            data(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
+        });
+    }
+
+    if (typeof salt === 'function') {
+        return process.nextTick(function() {
+            salt(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
+        });
+    }
+
+    // cb exists but is not a function
+    // return a rejecting promise
+    if (cb &amp;&amp; typeof cb !== 'function') {
+        return promises.reject(new Error('cb must be a function or null to return a Promise'));
+    }
+
+    if (!cb) {
+        return promises.promise(hash, this, [data, salt]);
+    }
+
+    if (data == null || salt == null) {
+        return process.nextTick(function() {
+            cb(new Error('data and salt arguments required'));
+        });
+    }
+
+    if (typeof data !== 'string' || (typeof salt !== 'string' &amp;&amp; typeof salt !== 'number')) {
+        return process.nextTick(function() {
+            cb(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
+        });
+    }
+
+
+    if (typeof salt === 'number') {
+        return module.exports.genSalt(salt, function(err, salt) {
+            return bindings.encrypt(data, salt, cb);
+        });
+    }
+
+    return bindings.encrypt(data, salt, cb);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+#### To hash a password:
+
+Technique 1 (generate a salt and hash on separate function calls):
+
+```javascript
+bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.<span class="apidocCodeKeywordSpan">hash</span>(myPlaintextPassword, salt, function(err, hash) {
+        // Store hash in your password DB.
+    });
+});
+```
+
+Technique 2 (auto-gen a salt and hash):
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.bcrypt.hashSync" id="apidoc.element.bcrypt.bcrypt.hashSync">
+        function <span class="apidocSignatureSpan">bcrypt.bcrypt.</span>hashSync
+        <span class="apidocSignatureSpan">(data, salt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hashSync(data, salt) {
+    if (data == null || salt == null) {
+        throw new Error('data and salt arguments required');
+    }
+
+    if (typeof data !== 'string' || (typeof salt !== 'string' &amp;&amp; typeof salt !== 'number')) {
+        throw new Error('data must be a string and salt must either be a salt string or a number of rounds');
+    }
+
+    if (typeof salt === 'number') {
+        salt = module.exports.genSaltSync(salt);
+    }
+
+    return bindings.encrypt_sync(data, salt);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+#### To hash a password:
+
+Technique 1 (generate a salt and hash on separate function calls):
+
+```javascript
+var salt = bcrypt.genSaltSync(saltRounds);
+var hash = bcrypt.<span class="apidocCodeKeywordSpan">hashSync</span>(myPlaintextPassword, salt);
+// Store hash in your password DB.
+```
+
+Technique 2 (auto-gen a salt and hash):
+
+```javascript
+var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.bcrypt.promises" id="apidoc.module.bcrypt.promises">module bcrypt.promises</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.promises.promise" id="apidoc.element.bcrypt.promises.promise">
+        function <span class="apidocSignatureSpan">bcrypt.promises.</span>promise
+        <span class="apidocSignatureSpan">(fn, context, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">promise = function (fn, context, args) {
+
+    //can't do anything without Promise so fail silently
+    if (typeof Promise === 'undefined') {
+        return;
+    }
+
+    if (!Array.isArray(args)) {
+        args = Array.prototype.slice.call(args);
+    }
+
+    if (typeof fn !== 'function') {
+        return Promise.reject(new Error('fn must be a function'));
+    }
+
+    return new Promise(function(resolve, reject) {
+        args.push(function(err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+
+        fn.apply(context, args);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// callback is second argument
+} else if (typeof arguments[1] === 'function') {
+    // have to set callback first otherwise arguments are overriden
+    cb = arguments[1];
+}
+
+if (!cb) {
+    return promises.<span class="apidocCodeKeywordSpan">promise</span>(genSalt, this, [rounds, ignore]);
+}
+
+// default 10 rounds
+if (!rounds) {
+    rounds = 10;
+} else if (typeof rounds !== 'number') {
+    // callback error asynchronously
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.bcrypt.promises.reject" id="apidoc.element.bcrypt.promises.reject">
+        function <span class="apidocSignatureSpan">bcrypt.promises.</span>reject
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">reject = function (err) {
+
+    // silently swallow errors if Promise is not defined
+    // emulating old behavior
+    if (typeof Promise === 'undefined') {
+        return;
+    }
+
+    return Promise.reject(err);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        salt(new Error('data must be a string and salt must either be a salt string or a number of rounds'));
+    });
+}
+
+// cb exists but is not a function
+// return a rejecting promise
+if (cb &amp;&amp; typeof cb !== 'function') {
+    return promises.<span class="apidocCodeKeywordSpan">reject</span>(new Error('cb must be a function or null to return a
+Promise'));
+}
+
+if (!cb) {
+    return promises.promise(hash, this, [data, salt]);
+}
+
+if (data == null || salt == null) {
 ...</pre></li>
     </ul>
 
