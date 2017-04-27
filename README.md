@@ -1,6 +1,6 @@
 # npmdoc-bcrypt
 
-#### api documentation for  [bcrypt (v1.0.2)](https://github.com/kelektiv/node.bcrypt.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-bcrypt.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-bcrypt) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-bcrypt.svg)](https://travis-ci.org/npmdoc/node-npmdoc-bcrypt)
+#### basic api documentation for  [bcrypt (v1.0.2)](https://github.com/kelektiv/node.bcrypt.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-bcrypt.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-bcrypt) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-bcrypt.svg)](https://travis-ci.org/npmdoc/node-npmdoc-bcrypt)
 
 #### A bcrypt library for NodeJS.
 
@@ -150,7 +150,8 @@
         "install": "node-pre-gyp install --fallback-to-build",
         "test": "npm install --build-from-source && nodeunit test"
     },
-    "version": "1.0.2"
+    "version": "1.0.2",
+    "bin": {}
 }
 ```
 
