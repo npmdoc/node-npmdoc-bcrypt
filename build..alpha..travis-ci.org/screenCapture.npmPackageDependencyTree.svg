@@ -13,12 +13,12 @@
 <tspan x="10" y="170">    ├─┬ nopt@3.0.6 </tspan>
 <tspan x="10" y="186">    │ └── abbrev@1.1.0 </tspan>
 <tspan x="10" y="202">    ├─┬ npmlog@4.0.2 </tspan>
-<tspan x="10" y="218">    │ ├─┬ are-we-there-yet@1.1.2 </tspan>
+<tspan x="10" y="218">    │ ├─┬ are-we-there-yet@1.1.4 </tspan>
 <tspan x="10" y="234">    │ │ ├── delegates@1.0.0 </tspan>
 <tspan x="10" y="250">    │ │ └─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="266">    │ │   └── string_decoder@1.0.0 </tspan>
 <tspan x="10" y="282">    │ ├── console-control-strings@1.1.0 </tspan>
-<tspan x="10" y="298">    │ ├─┬ gauge@2.7.3 </tspan>
+<tspan x="10" y="298">    │ ├─┬ gauge@2.7.4 </tspan>
 <tspan x="10" y="314">    │ │ ├── aproba@1.1.1 </tspan>
 <tspan x="10" y="330">    │ │ ├── has-unicode@2.0.1 </tspan>
 <tspan x="10" y="346">    │ │ ├── object-assign@4.1.1 </tspan>
@@ -71,7 +71,7 @@
 <tspan x="10" y="1098">    │ │   ├─┬ dashdash@1.14.1 </tspan>
 <tspan x="10" y="1114">    │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="1130">    │ │   ├── ecc-jsbn@0.1.1 </tspan>
-<tspan x="10" y="1146">    │ │   ├─┬ getpass@0.1.6 </tspan>
+<tspan x="10" y="1146">    │ │   ├─┬ getpass@0.1.7 </tspan>
 <tspan x="10" y="1162">    │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="1178">    │ │   ├── jodid25519@1.0.2 </tspan>
 <tspan x="10" y="1194">    │ │   ├── jsbn@0.1.1 </tspan>
